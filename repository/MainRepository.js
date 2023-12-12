@@ -12,7 +12,22 @@ export async function getBestSeller() {
   return db.execute(sql).then((result) => result[0]);
 }
 
-export async function getField(searchCategoryId) {
-  const sql = 'select cover, title, priceSales, searchCategoryId from editor_recommend where searchCategoryId=?;';
+export async function getFieldAll(searchCategoryId) {
+  const sql = 'select cover, title, priceSales, searchCategoryId from editor_recommend where searchCategoryId=?';
   return db.execute(sql, [searchCategoryId]).then((result) => result[0]);
+}
+
+export async function getBlogBest() {
+  const sql = 'select cover, title, customerReviewRank, priceStandard, priceSales from blogbest limit 8;';
+  return db.execute(sql).then((result) => result[0]);
+}
+
+export async function getMusic() {
+  const sql = 'select cover, title, priceSales, mileage from music_bestseller limit 9;';
+  return db.execute(sql).then((result) => result[0]);
+}
+
+export async function getDvd() {
+  const sql = 'select cover, title, priceSales, mileage from dvdbestseller limit 9;';
+  return db.execute(sql).then((result) => result[0]);
 }

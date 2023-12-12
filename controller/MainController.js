@@ -10,8 +10,23 @@ export async function getBestSeller(req, res) {
   res.json(result);
 }
 
-export async function getField(req, res) {
+export async function getFieldAll(req, res) {
   const searchCategoryId = req.params.searchCategoryId;
-  const result = await repository.getField(searchCategoryId);
+  const result = await repository.getFieldAll(searchCategoryId);
+  res.json(result);
+}
+
+export async function getBlogBest(req, res) {
+  const result = await repository.getBlogBest();
+  res.json(result);
+}
+
+export async function getMusic(req, res) {
+  const result = await repository.getMusic();
+  res.json(result);
+}
+
+export async function getDvd(req, res) {
+  const result = await repository.getDvd();
   res.json(result);
 }
