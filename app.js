@@ -8,6 +8,7 @@ import CategoryMain from "./router/CategoryMain.js";
 import cors from "cors";
 import LoginRouter from "./router/LoginRouter.js";
 import SearchRouter from "./router/SearchRouter.js";
+import CategoryListRouter from "./router/CategoryListRouter.js";
 
 const app = express();
 app.use(cors());
@@ -22,7 +23,7 @@ app.use("/", MainRouter);
 app.use("/search", SearchRouter);
 app.use("/member", MemberRouter);
 app.use("/login", LoginRouter);
-/* app.use("/category/list"); */
+app.use("/category/list", CategoryListRouter);
 app.use("/category/main", CategoryMain);
 
 app.listen(9090, () => {
