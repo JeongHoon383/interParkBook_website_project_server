@@ -15,7 +15,7 @@ app.use(cors());
 
 // app.use('/bestseller', BestsellerRouter);
 // app.use('/cart', CartRouter);
-// app.use('/book', DetailRouter);
+ app.use('/book', DetailRouter);
 app.use('/', MainRouter);
 // app.use('/search', SearchRouter);
 app.use('/member', MemberRouter);
