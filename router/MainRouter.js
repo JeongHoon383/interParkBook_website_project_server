@@ -3,6 +3,7 @@ import * as controller from '../controller/MainController.js';
 
 const router = express.Router();
 
+router.get('/book', controller.getBook);
 router.get('/new', controller.getNew);
 router.get('/best', controller.getBestSeller);
 router.get('/field/:searchCategoryId', controller.getFieldAll);
