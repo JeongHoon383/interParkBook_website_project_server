@@ -16,7 +16,7 @@ router.get(
   CategoryListController.getFifthDCategory
 );
 router.get(
-  "/:mall/:firstD/:secondD/:thirdD/:fourthD/:startIndex/:endIndex/:sort/:isSoldout",
+  "/:mall/:firstD/:secondD/:thirdD/:fourthD/:startIndex/:endIndex/:sortField/:sortOption/:isSoldout",
   CategoryListController.getBookData
 );
 

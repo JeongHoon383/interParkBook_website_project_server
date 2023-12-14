@@ -62,7 +62,8 @@ export async function getBookData(req, res) {
     fourthD,
     startIndex,
     endIndex,
-    sort,
+    sortField,
+    sortOption,
     isSoldout,
   } = req.params;
   const rows = await CategoryListRepository.getBookData({
@@ -73,7 +74,8 @@ export async function getBookData(req, res) {
     fourthD,
     startIndex,
     endIndex,
-    sort,
+    sortField,
+    sortOption,
     isSoldout,
   });
   res.json(rows);

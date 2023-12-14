@@ -67,7 +67,8 @@ export async function getBookData({
   fourthD,
   startIndex,
   endIndex,
-  sort,
+  sortField,
+  sortOption,
   isSoldout,
 }) {
   isSoldout = "%" + isSoldout;
@@ -81,7 +82,7 @@ export async function getBookData({
 	categoryName, priceSales, totalResults, rno, title, author, pubDate, stockStatus, description, isbn13, priceStandard, mallType, stockStatus, mileage, cover, publisher, salesPoint, customerReviewRank
 from
 	(select
-		categoryName, priceSales, row_number() over(order by ${sort}) as rno, totalResults, title, author, pubDate, description, isbn13, priceStandard, mallType, stockStatus, mileage, cover, publisher, salesPoint, customerReviewRank
+		categoryName, priceSales, row_number() over(order by ${sortField} ${sortOption}) as rno, totalResults, title, author, pubDate, description, isbn13, priceStandard, mallType, stockStatus, mileage, cover, publisher, salesPoint, customerReviewRank
 	from
 		book_all,
         (select count(*) as totalResults from book_all where categoryName like ?) book_totalResults
@@ -90,6 +91,6 @@ from
 	where rno between ? and ?`;
 
   return db
-    .execute(sql, [categoryName, categoryName, isSoldout, startIndex, endIndex])
+    .execute(sql, [ categoryName, categoryName, isSoldout, startIndex, endIndex])
     .then((result) => result[0]);
 }
