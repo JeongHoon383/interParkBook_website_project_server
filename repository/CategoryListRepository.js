@@ -59,21 +59,37 @@ export async function getFifthDCategory({
   return db.execute(sql, parameter).then((result) => result[0]);
 }
 
-export async function getBookData({mall, firstD, secondD, thirdD, fourthD, startIndex, endIndex, sorting}) {
-  let categoryName = `${mall}>${firstD}${secondD !== "undefined" ? ">" + secondD : ""}${thirdD !== "undefined" ? ">" + thirdD : ""}${fourthD !== "undefined" ? ">" + fourthD : ""}%`;
+export async function getBookData({
+  mall,
+  firstD,
+  secondD,
+  thirdD,
+  fourthD,
+  startIndex,
+  endIndex,
+  sort,
+  isSoldout,
+}) {
+  isSoldout = "%" + isSoldout;
+  let categoryName = `${mall}>${firstD}${
+    secondD !== "undefined" ? ">" + secondD : ""
+  }${thirdD !== "undefined" ? ">" + thirdD : ""}${
+    fourthD !== "undefined" ? ">" + fourthD : ""
+  }%`;
+
   let sql = `select
-	categoryName, priceSales, totalResults, rno, title, author, pubDate, description, isbn13, priceStandard, mallType, stockStatus, mileage, cover, publisher, salesPoint, customerReviewRank
+	categoryName, priceSales, totalResults, rno, title, author, pubDate, stockStatus, description, isbn13, priceStandard, mallType, stockStatus, mileage, cover, publisher, salesPoint, customerReviewRank
 from
 	(select
-		categoryName, priceSales, row_number() over(order by ${sorting}) as rno, totalResults, title, author, pubDate, description, isbn13, priceStandard, mallType, stockStatus, mileage, cover, publisher, salesPoint, customerReviewRank
+		categoryName, priceSales, row_number() over(order by ${sort}) as rno, totalResults, title, author, pubDate, description, isbn13, priceStandard, mallType, stockStatus, mileage, cover, publisher, salesPoint, customerReviewRank
 	from
 		book_all,
         (select count(*) as totalResults from book_all where categoryName like ?) book_totalResults
 	where 
-		categoryName like ?) bookList
+		categoryName like ? and stockStatus not like ?) bookList
 	where rno between ? and ?`;
 
   return db
-    .execute(sql, [categoryName, categoryName, startIndex, endIndex])
+    .execute(sql, [categoryName, categoryName, isSoldout, startIndex, endIndex])
     .then((result) => result[0]);
 }

@@ -13,25 +13,43 @@ export async function getFirstCategory(req, res) {
 
 export async function getSecondDCategory(req, res) {
   const { mall, firstD } = req.params;
-  const rows = await CategoryListRepository.getSecondDCategory({mall, firstD});
+  const rows = await CategoryListRepository.getSecondDCategory({
+    mall,
+    firstD,
+  });
   res.json(rows);
 }
 
 export async function getThirdDCategory(req, res) {
   const { mall, firstD, secondD } = req.params;
-  const rows = await CategoryListRepository.getThirdDCategory({mall, firstD, secondD});
+  const rows = await CategoryListRepository.getThirdDCategory({
+    mall,
+    firstD,
+    secondD,
+  });
   res.json(rows);
 }
 
 export async function getFourthDCategory(req, res) {
   const { mall, firstD, secondD, thirdD } = req.params;
-  const rows = await CategoryListRepository.getFourthDCategory({mall, firstD, secondD, thirdD,});
+  const rows = await CategoryListRepository.getFourthDCategory({
+    mall,
+    firstD,
+    secondD,
+    thirdD,
+  });
   res.json(rows);
 }
 
 export async function getFifthDCategory(req, res) {
   const { mall, firstD, secondD, thirdD, fourthD } = req.params;
-  const rows = await CategoryListRepository.getFifthDCategory({mall, firstD, secondD, thirdD, fourthD});
+  const rows = await CategoryListRepository.getFifthDCategory({
+    mall,
+    firstD,
+    secondD,
+    thirdD,
+    fourthD,
+  });
   res.json(rows);
 }
 
@@ -44,7 +62,8 @@ export async function getBookData(req, res) {
     fourthD,
     startIndex,
     endIndex,
-    sorting
+    sort,
+    isSoldout,
   } = req.params;
   const rows = await CategoryListRepository.getBookData({
     mall,
@@ -54,7 +73,8 @@ export async function getBookData(req, res) {
     fourthD,
     startIndex,
     endIndex,
-    sorting
+    sort,
+    isSoldout,
   });
   res.json(rows);
 }

@@ -7,8 +7,17 @@ router.get("/mall", CategoryListController.getMall);
 router.get("/:mall", CategoryListController.getFirstCategory);
 router.get("/:mall/:firstD", CategoryListController.getSecondDCategory);
 router.get("/:mall/:firstD/:secondD", CategoryListController.getThirdDCategory);
-router.get("/:mall/:firstD/:secondD/:thirdD", CategoryListController.getFourthDCategory);
-router.get("/:mall/:firstD/:secondD/:thirdD/:fourthD", CategoryListController.getFifthDCategory);
-router.get("/:mall/:firstD/:secondD/:thirdD/:fourthD/:startIndex/:endIndex/:sorting", CategoryListController.getBookData);
+router.get(
+  "/:mall/:firstD/:secondD/:thirdD",
+  CategoryListController.getFourthDCategory
+);
+router.get(
+  "/:mall/:firstD/:secondD/:thirdD/:fourthD",
+  CategoryListController.getFifthDCategory
+);
+router.get(
+  "/:mall/:firstD/:secondD/:thirdD/:fourthD/:startIndex/:endIndex/:sort/:isSoldout",
+  CategoryListController.getBookData
+);
 
 export default router;
