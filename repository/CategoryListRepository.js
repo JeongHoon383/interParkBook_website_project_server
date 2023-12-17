@@ -65,6 +65,7 @@ export async function getBookData({
   secondD,
   thirdD,
   fourthD,
+  fifthD,
   startIndex,
   endIndex,
   sortField,
@@ -76,7 +77,7 @@ export async function getBookData({
     secondD !== "undefined" ? ">" + secondD : ""
   }${thirdD !== "undefined" ? ">" + thirdD : ""}${
     fourthD !== "undefined" ? ">" + fourthD : ""
-  }%`;
+  }${fifthD !== "undefined" ? ">" + fifthD : ""}%`;
 
   let sql = `select
 	categoryName, priceSales, totalResults, rno, title, author, pubDate, stockStatus, description, isbn13, priceStandard, mallType, stockStatus, mileage, cover, publisher, salesPoint, customerReviewRank
@@ -91,6 +92,36 @@ from
 	where rno between ? and ?`;
 
   return db
-    .execute(sql, [ categoryName, categoryName, isSoldout, startIndex, endIndex])
+    .execute(sql, [categoryName, categoryName, isSoldout, startIndex, endIndex])
     .then((result) => result[0]);
+}
+
+export async function getCategoryId({
+  mall,
+  firstD,
+  secondD,
+  thirdD,
+  fourthD,
+  fifthD,
+}) {
+  let sql = 'select categoryId, categoryName from category where mall = ? and firstD = ? and secondD = ? and thirdD = ? and fourthD = ? and fifthD = ?';
+  let parameter = [mall, firstD, secondD, thirdD, fourthD, fourthD, fifthD];
+
+  if (secondD === "undefined") {
+    sql = 'select categoryId, categoryName from category where mall = ? and firstD = ? and categoryName = ?';
+    parameter = [mall, firstD, firstD];
+  }else if (thirdD === "undefined") {
+    sql = 'select categoryId, categoryName from category where mall = ? and firstD = ? and secondD = ? and categoryName = ?';
+    parameter = [mall, firstD, secondD, secondD];
+  }else if (fourthD === "undefined") {
+    sql = 'select categoryId, categoryName from category where mall = ? and firstD = ? and secondD = ? and thirdD = ? and categoryName = ?';
+    parameter = [mall, firstD, secondD, thirdD, thirdD];
+  }else if(fifthD === "undefined"){
+    sql = 'select categoryId, categoryName from category where mall = ? and firstD = ? and secondD = ? and thirdD = ? and fourthD = ? and categoryName = ?';
+    parameter = [mall, firstD, secondD, thirdD, fourthD, fourthD];
+  }
+
+  return db
+    .execute(sql, parameter)
+    .then((result) => result[0][0]);
 }

@@ -60,6 +60,7 @@ export async function getBookData(req, res) {
     secondD,
     thirdD,
     fourthD,
+    fifthD,
     startIndex,
     endIndex,
     sortField,
@@ -72,11 +73,18 @@ export async function getBookData(req, res) {
     secondD,
     thirdD,
     fourthD,
+    fifthD,
     startIndex,
     endIndex,
     sortField,
     sortOption,
     isSoldout,
   });
+  res.json(rows);
+}
+
+export async function getCategoryId(req, res){
+  const {mall, firstD, secondD, thirdD, fourthD, fifthD} = req.params;
+  const rows = await CategoryListRepository.getCategoryId({mall, firstD, secondD, thirdD, fourthD, fifthD});
   res.json(rows);
 }
