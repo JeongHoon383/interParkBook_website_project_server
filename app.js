@@ -7,6 +7,7 @@ import MainRouter from './router/MainRouter.js';
 import SearchRouter from './router/SearchRouter.js';
 import MemberRouter from './router/MemberRouter.js';
 import LoginRouter from './router/LoginRouter.js';
+import CategoryListRouter from "./router/CategoryListRouter.js";
 
 const app = express();
 app.use(express.json());
@@ -20,7 +21,7 @@ app.use('/', MainRouter);
 // app.use('/search', SearchRouter);
 app.use('/member', MemberRouter);
 app.use('/login', LoginRouter);
-// app.use('/category/list');
+app.use("/category/list", CategoryListRouter);
 // app.use('/category/main');
 
 app.listen(9090, () => {

@@ -1,5 +1,9 @@
 import * as repository from '../repository/MainRepository.js';
 
+export async function getBook(req, res) {
+  const result = await repository.getBook();
+  res.json(result);
+}
 export async function getNew(req, res) {
   const result = await repository.getNew();
   res.json(result);
