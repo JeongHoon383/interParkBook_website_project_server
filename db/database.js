@@ -7,5 +7,4 @@ const pool = mysql.createPool({
   password: '1234',
   database: 'book2023',
 });
-
 export const db = pool.promise();
