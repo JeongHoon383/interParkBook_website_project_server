@@ -26,3 +26,9 @@ export async function selectMember(req, res) {
     res.json(result);
   }
 }
+
+export async function getMemberInfo(req, res) {
+  const id = req.params.id;
+  const row = await repository.getMemberInfo(id);
+  res.json(row);
+}
