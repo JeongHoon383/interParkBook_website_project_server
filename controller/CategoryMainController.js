@@ -5,3 +5,9 @@ export async function getList(req, res){
   console.log(rows);
   res.json(rows);
 }
+
+export async function categoryMainNewBook(req, res){
+  const rows = await categoryMainRepository.categoryMainNewBook();
+  console.log(rows);
+  res.json(rows);
+}
