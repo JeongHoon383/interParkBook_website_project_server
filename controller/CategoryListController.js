@@ -1,4 +1,4 @@
-import * as CategoryListRepository from "../repository/CategoryListRepository.js";
+import * as CategoryListRepository from '../repository/CategoryListRepository.js';
 
 export async function getMall(req, res) {
   const rows = await CategoryListRepository.getMall();
