@@ -13,6 +13,5 @@ export async function addToWishlistAll(wishlistArr) {
     }
   });
 
-
   return Promise.all(insertPromises).then(result => '찜하기 완료');
 }
