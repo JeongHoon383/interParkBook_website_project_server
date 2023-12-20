@@ -5,9 +5,7 @@ import jwt from 'jsonwebtoken';
 
 export async function insertMember(req, res) {
   const { id, password, name, email, phone } = req.body;
-  console.log(req.body);
   const hashPass = bcrypt.hashSync(password, 10);
-  console.log(req.body);
   const result = await repository.insertMember(id, hashPass, name, email, phone);
   res.json(result);
 }
@@ -20,11 +18,11 @@ export async function selectMember(req, res) {
     if (await bcrypt.compare(password, result.password)) {
       result.login_result = true; // 로그인 성공
       //jwt 토큰 생성
-      const rememberUserInfo = jwt.sign({ id: id }, 'ikbHR397&7YP');
-      result.rememberUserInfo = rememberUserInfo;
+      const token = jwt.sign({ id: id }, 'ikbHR397&7YP');
+      result.token = token;
     }
-    res.json(result);
   }
+  res.json(result);
 }
 
 export async function getMemberInfo(req, res) {
