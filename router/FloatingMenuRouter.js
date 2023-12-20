@@ -3,6 +3,6 @@ import * as FloatingMenuController from '../controller/FloatingMenuController.js
 
 const router = express.Router();
 
-router.get('/:recentViewData', FloatingMenuController.getRecentView);
+router.post('/', FloatingMenuController.getRecentView);
 
 export default router;
