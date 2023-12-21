@@ -12,7 +12,7 @@ export async function getNew() {
 
 export async function getBestSeller() {
   const sql =
-    "select cover, bestRank, substring_index(title,'-',1) as title, isbn13 from bestseller where mallType='BOOK' order by bestRank limit 10;";
+    "select cover, bestRank, substring_index(title,'-',1) as title, isbn13 from bestseller where mallType='BOOK' order by bestRank limit 11;";
   return db.execute(sql).then((result) => result[0]);
 }
 
@@ -23,7 +23,8 @@ export async function getFieldAll(searchCategoryId) {
 }
 
 export async function getBlogBest() {
-  const sql = 'select cover, title, customerReviewRank, priceStandard, priceSales, isbn13 from blogbest limit 8;';
+  const sql =
+    'select cover, title, author, publisher, customerReviewRank, priceStandard, priceSales, isbn13 from blogbest';
   return db.execute(sql).then((result) => result[0]);
 }
 

@@ -1,4 +1,4 @@
-import * as CategoryListRepository from "../repository/CategoryListRepository.js";
+import * as CategoryListRepository from '../repository/CategoryListRepository.js';
 
 export async function getMall(req, res) {
   const rows = await CategoryListRepository.getMall();
@@ -13,25 +13,43 @@ export async function getFirstCategory(req, res) {
 
 export async function getSecondDCategory(req, res) {
   const { mall, firstD } = req.params;
-  const rows = await CategoryListRepository.getSecondDCategory({mall, firstD});
+  const rows = await CategoryListRepository.getSecondDCategory({
+    mall,
+    firstD,
+  });
   res.json(rows);
 }
 
 export async function getThirdDCategory(req, res) {
   const { mall, firstD, secondD } = req.params;
-  const rows = await CategoryListRepository.getThirdDCategory({mall, firstD, secondD});
+  const rows = await CategoryListRepository.getThirdDCategory({
+    mall,
+    firstD,
+    secondD,
+  });
   res.json(rows);
 }
 
 export async function getFourthDCategory(req, res) {
   const { mall, firstD, secondD, thirdD } = req.params;
-  const rows = await CategoryListRepository.getFourthDCategory({mall, firstD, secondD, thirdD,});
+  const rows = await CategoryListRepository.getFourthDCategory({
+    mall,
+    firstD,
+    secondD,
+    thirdD,
+  });
   res.json(rows);
 }
 
 export async function getFifthDCategory(req, res) {
   const { mall, firstD, secondD, thirdD, fourthD } = req.params;
-  const rows = await CategoryListRepository.getFifthDCategory({mall, firstD, secondD, thirdD, fourthD});
+  const rows = await CategoryListRepository.getFifthDCategory({
+    mall,
+    firstD,
+    secondD,
+    thirdD,
+    fourthD,
+  });
   res.json(rows);
 }
 
@@ -42,9 +60,12 @@ export async function getBookData(req, res) {
     secondD,
     thirdD,
     fourthD,
+    fifthD,
     startIndex,
     endIndex,
-    sorting
+    sortField,
+    sortOption,
+    isSoldout,
   } = req.params;
   const rows = await CategoryListRepository.getBookData({
     mall,
@@ -52,9 +73,18 @@ export async function getBookData(req, res) {
     secondD,
     thirdD,
     fourthD,
+    fifthD,
     startIndex,
     endIndex,
-    sorting
+    sortField,
+    sortOption,
+    isSoldout,
   });
+  res.json(rows);
+}
+
+export async function getCategoryId(req, res){
+  const {mall, firstD, secondD, thirdD, fourthD, fifthD} = req.params;
+  const rows = await CategoryListRepository.getCategoryId({mall, firstD, secondD, thirdD, fourthD, fifthD});
   res.json(rows);
 }
