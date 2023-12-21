@@ -13,3 +13,6 @@
   "type": "module",
   "start": "app.js"
 ```
+
+- npm install socket.io@4
+

@@ -1,7 +1,7 @@
 import { db } from "../db/database.js";
 
 export async function getDetail(id) {
-  const sql = `SELECT * FROM book WHERE isbn = ?`;
+  const sql = `SELECT * FROM book_all WHERE isbn13 = ?`;
   return db.execute(sql, [id]).then((row) => row[0][0]);
 }
 
