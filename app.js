@@ -41,6 +41,9 @@ app.use("/category/list", CategoryListRouter);
 app.use('/wishlist', WishlistRouter);
 app.use('/floatingMenu', FloatingMenuRouter);
 app.use("/admin", AdminRouter);
+app.use("/search", SearchRouter);
+app.use("/bestseller", BestsellerRouter);
+
 server.listen(9090, () => {
   console.log(`http://localhost:9090 인터파크서버실행중`);
 });
