@@ -1,5 +1,5 @@
 import express from "express";
-import * as controller from "../controller/SearchConttroller.js";
+import * as controller from '../controller/SearchConttroller.js';
 
 const router = express.Router();
 
