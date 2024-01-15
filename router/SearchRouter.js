@@ -1,8 +1,8 @@
 import express from "express";
-import * as controller from '../controller/SearchController.js';
+import * as controller from "../controller/SearchConttroller.js";
 
 const router = express.Router();
 
-router.post('/', controller.getSearchBook);
+router.post("/", controller.getSearchBook);
 
 export default router;

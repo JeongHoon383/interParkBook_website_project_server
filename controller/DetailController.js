@@ -8,7 +8,7 @@ export async function getDetail(req, res) {
 
 export async function insertReview(req, res) {
   let { uid, isbn, title, content, point } = req.body;
- 
+
   const row = await DetailRepository.insertReview(
     uid,
     isbn,
