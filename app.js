@@ -21,7 +21,7 @@ const app = express();
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "http://127.0.0.1:3000",
+    origin: "http://192.168.50.16:3000",
     methods: ["GET", "POST"],
   },
 });
@@ -46,5 +46,5 @@ app.use("/search", SearchRouter);
 app.use("/bestseller", BestsellerRouter);
 
 server.listen(9090, () => {
-  console.log(`http://127.0.0.1:9090 인터파크서버실행중`);
+  console.log(`http://192.168.50.16:9090 인터파크서버실행중`);
 });
